@@ -1,11 +1,28 @@
 import { createGlobalStyle } from 'styled-components';
-const GlobalStyle = createGlobalStyle`
-  body{
-  margin: 0;
-  padding: 0;
+
+export const GlobalStyle = createGlobalStyle`
+   
+    * {
+    	margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        align-items: center;
+        background: ${({ theme }: { theme: any }) => theme.bgColor};
  
-
- }
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        transition: all 0.25s linear;
+        color: ${({ theme }: { theme: any }) => theme.textColor};
+    }
+    button { 
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color: ${({ theme }: { theme: any }) => theme.bgColor};
+        background-color: ${({ theme }: { theme: any }) => theme.textColor};
+    }
 `;
-
 export default GlobalStyle;
