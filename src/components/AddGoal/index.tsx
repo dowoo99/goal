@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useAppDispatch } from '../../redux/config/configStore';
 import { addGoal } from '../../redux/modules/FormSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/config/configStore';
+import AddForm from './AddForm';
 
 const AddGoalInput = () => {
-  const touser = useSelector((state: RootState) => state.form.usergoal);
+  const touser = useSelector((state: RootState) => state.form);
   const dispatch = useAppDispatch();
   const [form, setForm] = useState({
     title: '',
     goal: '',
+    id: null,
   });
   console.log(touser);
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,12 +21,14 @@ const AddGoalInput = () => {
       [name]: value,
     });
   };
+
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(addGoal(form));
     setForm({
       title: '',
       goal: '',
+      id: null,
     });
   };
 
@@ -45,6 +49,7 @@ const AddGoalInput = () => {
         ></input>
         <button>등록하기</button>
       </form>
+      <AddForm />
     </div>
   );
 };

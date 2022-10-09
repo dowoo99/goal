@@ -1,21 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface toGoal {
+import { createAction } from '@reduxjs/toolkit';
+export interface ToGoal {
   title: string;
   goal: string;
+  id: number | null;
 }
-interface UserGoal {
-  usergoal: toGoal[];
-}
-const initialState: UserGoal = {
-  usergoal: [],
-};
+
+const initialState = [{ title: '테스트1', goal: '살빼자', id: 1 }] as ToGoal[];
 export const userGoalSlice = createSlice({
   name: 'userGoal',
   initialState,
   reducers: {
-    addGoal: (state, action) => {
-      state.usergoal = action.payload;
+    addGoal(state, action: PayloadAction<ToGoal>) {
+      return [...state, action.payload];
     },
   },
 });
